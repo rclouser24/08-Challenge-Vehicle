@@ -186,7 +186,8 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          []
+          answers.towingCapacity,
+          parseInt(answers.wheels)
         );
         // TODO: push the truck to the vehicles array
         this.vehicles.push(truck);
@@ -293,7 +294,7 @@ class Cli {
       .then((answers) => {
         // TODO: check if the selected vehicle is the truck
         // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
-        if (answers.choices === truck){
+        if (answers.vehicleToTow === this.selectedVehicleVin){
           console.log("The truck cannot tow itself.");
             
           this.findVehicleToTow();
@@ -412,7 +413,7 @@ class Cli {
             const vehicle = this.vehicles[i];
 
             if (vehicle instanceof Motorbike && vehicle.vin === this.selectedVehicleVin){
-              doAWheelie();
+              vehicle.doAWheelie();
             }
           }
           this.performActions();
